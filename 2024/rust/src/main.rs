@@ -10,10 +10,9 @@ async fn main() {
     let day = &args[1].parse().unwrap();
     println!("AOC DAY {day}");
     match day {
-        1 => day1(),
+        1 => tokio::spawn(day1()).await.unwrap(),
         _ => panic!("invalid day"),
     }
-    .await
 }
 
 async fn day1() {
