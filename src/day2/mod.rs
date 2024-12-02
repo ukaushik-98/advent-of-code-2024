@@ -1,5 +1,10 @@
 use tokio::fs;
 
+pub async fn day2() {
+    let _ = read_data_part_1().await.unwrap();
+    let _ = read_data_part_2().await.unwrap();
+}
+
 pub async fn read_data_part_1() -> Result<(), Box<dyn std::error::Error + 'static>> {
     let buf = fs::read("./src/day2/real.txt").await.unwrap();
 

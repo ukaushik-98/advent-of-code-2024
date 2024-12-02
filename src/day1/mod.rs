@@ -5,6 +5,14 @@ use std::usize;
 use tokio::fs::File;
 use tokio::io::AsyncReadExt;
 
+pub async fn day1() {
+    let mut locations = read_file().await.unwrap();
+    let distance = calculate_dist(&mut locations).await.unwrap();
+    println!("Distance: {}", distance);
+    let sim_score = calculate_sim_score(&mut locations).await.unwrap();
+    println!("Sim Score: {}", sim_score)
+}
+
 pub async fn read_file() -> Result<(Vec<usize>, Vec<usize>), Box<dyn std::error::Error + 'static>> {
     let mut f = File::open("./src/day1/real.txt").await?;
     let mut buf = Vec::new();
