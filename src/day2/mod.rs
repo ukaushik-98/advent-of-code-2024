@@ -20,7 +20,6 @@ pub async fn read_data_part_1() -> Result<(), Box<dyn std::error::Error + 'stati
             .collect();
 
         let mut permute = Vec::new();
-        let len = raw_pair.len();
         permute.push(raw_pair.clone());
         let mut valid = false;
         for perm in permute.iter_mut() {
