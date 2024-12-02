@@ -6,7 +6,7 @@ use tokio::fs::File;
 use tokio::io::AsyncReadExt;
 
 pub async fn read_file() -> Result<(Vec<usize>, Vec<usize>), Box<dyn std::error::Error + 'static>> {
-    let mut f = File::open("../../content/day1/real.txt").await?;
+    let mut f = File::open("./src/day1/real.txt").await?;
     let mut buf = Vec::new();
 
     let _ = f.read_to_end(&mut buf).await;
