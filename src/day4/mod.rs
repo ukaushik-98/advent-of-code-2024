@@ -3,7 +3,7 @@ use std::{collections::HashSet, usize};
 use tokio::fs;
 
 pub async fn day4() {
-    // let _ = read_file().await;
+    let _ = read_file().await;
     let _ = read_file_part_2().await;
 }
 
@@ -33,14 +33,6 @@ async fn read_file() {
         for (j, _) in row.iter().enumerate() {
             for (x, y) in direction.iter() {
                 let result = dfs(&matrix, &(i, j), (*x, *y));
-                // if result > 0 {
-                //     println!(
-                //         "point: {:?}, direction: {:?}, result: {}",
-                //         (i, j),
-                //         (x, y),
-                //         result
-                //     );
-                // }
                 count += result;
             }
         }
@@ -66,10 +58,6 @@ fn dfs(matrix: &Vec<Vec<char>>, (i, j): &(usize, usize), (x, y): (i32, i32)) -> 
                 count += 1;
                 break;
             }
-            // println!(
-            //     "m: {}, n: {}, val: {}, pattern: {}",
-            //     m, n, matrix[m as usize][n as usize], pattern[a]
-            // );
             let m = m + x;
             let n = n + y;
             if 0 <= m && m < matrix.len() as i32 && 0 <= n && n < matrix[0].len() as i32 {
@@ -97,9 +85,6 @@ async fn read_file_part_2() {
         for (j, _) in row.iter().enumerate() {
             if matrix[i as usize][j as usize] == 'A' {
                 let result = dfs_part_2(&matrix, &(i, j));
-                if result > 0 {
-                    println!("point: {:?}, result: {}", (i, j), result);
-                }
                 count += result;
             }
         }
@@ -130,7 +115,6 @@ fn dfs_part_2(matrix: &Vec<Vec<char>>, (i, j): &(usize, usize)) -> usize {
     // Check if any of the patterns in res are in diags
     for pattern in res.iter() {
         if diags == pattern {
-            println!("Pattern {:?} found in diagonals.", pattern);
             return 1;
         }
     }
