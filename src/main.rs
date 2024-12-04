@@ -3,10 +3,12 @@ use std::env;
 use day1::day1;
 use day2::day2;
 use day3::day3;
+use day4::day4;
 
 pub mod day1;
 pub mod day2;
 pub mod day3;
+pub mod day4;
 
 #[tokio::main]
 async fn main() {
@@ -17,6 +19,7 @@ async fn main() {
         1 => tokio::spawn(day1()).await.unwrap(),
         2 => tokio::spawn(day2()).await.unwrap(),
         3 => tokio::spawn(day3()).await.unwrap(),
+        4 => tokio::spawn(day4()).await.unwrap(),
         _ => panic!("invalid day"),
     }
 }
