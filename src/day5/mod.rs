@@ -9,6 +9,7 @@ pub async fn day5() {
     let (map, updates) = join!(build_map(), build_updates());
     let mut count = 0;
     let mut count2 = 0;
+
     for update in updates.iter() {
         if check(&map, &update) {
             let mid = update.len() / 2;
@@ -20,7 +21,7 @@ pub async fn day5() {
         }
     }
     println!("AOC DAY 5 Part 1: {count}");
-    println!("AOC DAY 5 Part 1: {count2}");
+    println!("AOC DAY 5 Part 2: {count2}");
 }
 
 async fn build_map() -> HashMap<String, HashSet<String>> {
@@ -31,11 +32,14 @@ async fn build_map() -> HashMap<String, HashSet<String>> {
 
     let mut rules: HashMap<String, HashSet<String>> = HashMap::new();
 
-    for rule in content.iter_mut() {
-        let pages: Vec<&str> = rule.split("|").collect();
-        let deps = rules.entry(pages[1].to_string()).or_insert(HashSet::new());
-        deps.insert(pages[0].to_string());
-    }
+    let _ = content
+        .iter_mut()
+        .map(|rule| {
+            let pages: Vec<&str> = rule.split("|").collect();
+            let deps = rules.entry(pages[1].to_string()).or_insert(HashSet::new());
+            deps.insert(pages[0].to_string());
+        })
+        .collect::<Vec<_>>();
 
     rules
 }
@@ -44,15 +48,18 @@ async fn build_updates() -> Vec<Vec<String>> {
     let buf = fs::read("./src/day5/real_updates.txt").await.unwrap();
 
     let content: std::borrow::Cow<'_, str> = String::from_utf8_lossy(&buf);
-    let mut content: Vec<&str> = content.split("\n").collect();
+    let content: Vec<&str> = content.split("\n").collect();
 
     let mut updates = Vec::new();
 
-    for update in content.iter_mut() {
-        let pages: Vec<&str> = update.split(",").collect();
-        let pages = pages.iter().map(|x| x.to_string()).collect();
-        updates.push(pages);
-    }
+    let _ = content
+        .iter()
+        .map(|update| {
+            let pages: Vec<&str> = update.split(",").collect();
+            let pages = pages.iter().map(|x| x.to_string()).collect();
+            updates.push(pages);
+        })
+        .collect::<Vec<_>>();
 
     updates
 }
