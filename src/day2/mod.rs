@@ -5,7 +5,7 @@ pub async fn day2() {
     let _ = read_data_part_2().await.unwrap();
 }
 
-pub async fn read_data_part_1() -> Result<(), Box<dyn std::error::Error + 'static>> {
+async fn read_data_part_1() -> Result<(), Box<dyn std::error::Error + 'static>> {
     let buf = fs::read("./src/day2/real.txt").await.unwrap();
 
     let content: std::borrow::Cow<'_, str> = String::from_utf8_lossy(&buf);
@@ -34,7 +34,7 @@ pub async fn read_data_part_1() -> Result<(), Box<dyn std::error::Error + 'stati
     Ok(())
 }
 
-pub async fn read_data_part_2() -> Result<(), Box<dyn std::error::Error + 'static>> {
+async fn read_data_part_2() -> Result<(), Box<dyn std::error::Error + 'static>> {
     let buf = fs::read("./src/day2/real.txt").await.unwrap();
 
     let content: std::borrow::Cow<'_, str> = String::from_utf8_lossy(&buf);

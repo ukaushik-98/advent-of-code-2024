@@ -13,7 +13,7 @@ pub async fn day1() {
     println!("Sim Score: {}", sim_score)
 }
 
-pub async fn read_file() -> Result<(Vec<usize>, Vec<usize>), Box<dyn std::error::Error + 'static>> {
+async fn read_file() -> Result<(Vec<usize>, Vec<usize>), Box<dyn std::error::Error + 'static>> {
     let mut f = File::open("./src/day1/real.txt").await?;
     let mut buf = Vec::new();
 
@@ -32,7 +32,7 @@ pub async fn read_file() -> Result<(Vec<usize>, Vec<usize>), Box<dyn std::error:
     Ok((loc1, loc2))
 }
 
-pub async fn calculate_dist(
+async fn calculate_dist(
     locations: &mut (Vec<usize>, Vec<usize>),
 ) -> Result<usize, Box<dyn std::error::Error + 'static>> {
     let (loc1, loc2) = locations;
@@ -46,7 +46,7 @@ pub async fn calculate_dist(
     Ok(total)
 }
 
-pub async fn calculate_sim_score(
+async fn calculate_sim_score(
     locations: &mut (Vec<usize>, Vec<usize>),
 ) -> Result<usize, Box<dyn std::error::Error + 'static>> {
     let (loc1, loc2) = locations;
