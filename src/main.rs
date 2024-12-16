@@ -8,6 +8,7 @@ use day5::day5;
 use day6::day6;
 use day7::day7;
 use day8::day8;
+use day9::day9;
 
 pub mod day1;
 pub mod day2;
@@ -17,6 +18,7 @@ pub mod day5;
 pub mod day6;
 pub mod day7;
 pub mod day8;
+pub mod day9;
 
 #[tokio::main]
 async fn main() {
@@ -32,6 +34,7 @@ async fn main() {
         6 => tokio::spawn(day6()).await.unwrap(),
         7 => tokio::spawn(day7()).await.unwrap(),
         8 => tokio::spawn(day8()).await.unwrap(),
+        9 => tokio::spawn(day9()).await.unwrap(),
         _ => panic!("invalid day"),
     }
 }
